@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "soft-space"
+version = "0.1.0"
+description = ""
+authors = ["Anton Semenov <s.anton@live.ru>"]
+readme = "README.md"
+packages = [{include = "soft_space"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.103.1"
+sqlalchemy = "^2.0.21"
+pydantic-settings = "^2.0.3"
+uvicorn = "^0.23.2"
+alembic = "^1.12.0"
+asyncpg = "^0.28.0"
+pydantic = {extras = ["email"], version = "^2.4.2"}
+httpx = "^0.25.0"
+pytest-dotenv = "^0.5.2"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.1.0"
+pytest = "^7.4.2"
+pytest-asyncio = "^0.21.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".", "src"
+]
+asyncio_mode = "auto"
+env_files = ".test.env"
+
