@@ -31,7 +31,7 @@
 ## Run project locally
 1. Clone the project to local machine 
 ```bash 
-git clone https://github.com/zavr1k/
+git clone https://github.com/zavr1k/soft-space.git
 ```
 2. Run it with one command 
 ```bash
