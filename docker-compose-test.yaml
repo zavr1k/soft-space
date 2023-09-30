@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  test-softspace-app:
+    container_name: test-softspace-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      bash -c "poetry run alembic upgrade heads 
+      && tail -f > /dev/null"
+    environment: 
+      - ENVIRON=test
+    env_file: .test.env
+    depends_on:
+      - test-softspace-db
+    volumes:
+      - ./migrations:/app/migrations
+      - ./tests:/app/tests
+      - ./src:/app/src
+      - ./setup.cfg:/app/setup.cfg
+      - ./alembic.ini:/app/alembic.ini
+
+  test-softspace-db:
+    container_name: test-softspace-db
+    image: postgres:15
+    ports:
+      - '5432:5432'
+    env_file: .test.env
+    restart: on-failure
